@@ -15,6 +15,7 @@ node{
     //bat cd web-thymeleaf-war;
     dir ("web-thymeleaf-war"){
     bat "mvn package"
+     bat dir "*.*/s"
     }
   }
   
