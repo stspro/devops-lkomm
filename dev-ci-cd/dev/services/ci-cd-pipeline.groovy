@@ -40,6 +40,7 @@ node{
     dir ("web-thymeleaf-war/target"){
       bat "copy mkyong.war C:\DevOps\apache-tomcat-9.0.43\webapps"
     }
+  }
     //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
    //start Tomcat
   //C:\DevOps\apache-tomcat-9.0.43\webapps
