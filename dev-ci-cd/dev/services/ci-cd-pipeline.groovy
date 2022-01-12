@@ -2,7 +2,7 @@ node{
   stage("checkout"){
    
    git url: "https://github.com/stspro/spring-boot.git"
-     //dir (")
+     //dir ("web-thymeleaf-war")
      bat "dir *.*/s"
 //   bat "cd web-thymeleaf-war"
   
@@ -12,8 +12,10 @@ node{
   }
   stage("build automation"){
    // mvn package
-    bat """cd web-thymeleaf-war;
-    mvn package"""
+    //bat cd web-thymeleaf-war;
+    dir ("web-thymeleaf-war"){
+    bat "mvn package"
+    }
   }
   
   stage("unit testing"){
