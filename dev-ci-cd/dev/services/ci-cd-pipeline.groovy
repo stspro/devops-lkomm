@@ -1,5 +1,5 @@
 node{
-  stage("checkout")
+  stage("checkout"){
    
    git clone "https://github.com/stspro/spring-boot.git"
      //dir (")
@@ -9,7 +9,7 @@ node{
    //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
    //start Tomcat
    //localhost:8080/mkyong
-  
+  }
   stage("build automation"){
    // mvn package
   }
@@ -23,5 +23,5 @@ node{
   stage("build management"){
   //artifactory upload
   }
-  
+}
   
