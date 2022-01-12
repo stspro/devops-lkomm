@@ -1,7 +1,7 @@
 node{
   stage("checkout"){
    
-   git clone "https://github.com/stspro/spring-boot.git"
+   git url: "https://github.com/stspro/spring-boot.git"
      //dir (")
      bat "dir *.*/s"
 //   bat "cd web-thymeleaf-war"
