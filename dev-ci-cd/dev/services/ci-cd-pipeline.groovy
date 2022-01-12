@@ -28,7 +28,7 @@ node{
   stage("build management"){
   //artifactory upload
     dir ("web-thymeleaf-war/target"){
-      archive "mkyong.war"
+     archiveArtifacts "mkyong.war"
     }
     
   }
