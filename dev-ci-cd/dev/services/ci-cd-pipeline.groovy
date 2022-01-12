@@ -20,6 +20,10 @@ node{
   }
   
   stage("unit testing"){
+     dir ("web-thymeleaf-war"){
+    bat "mvn test"
+ 
+    }
   }
   
   stage("code analysis"){
