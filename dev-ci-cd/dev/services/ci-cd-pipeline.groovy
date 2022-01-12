@@ -12,6 +12,8 @@ node{
   }
   stage("build automation"){
    // mvn package
+    bat """cd web-thymeleaf-war;
+    mvn package"""
   }
   
   stage("unit testing"){
