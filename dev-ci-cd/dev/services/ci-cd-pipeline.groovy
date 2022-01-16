@@ -1,7 +1,7 @@
 node{
   stage("checkout"){
  
-
+git url:https://github.com/stspro/nugensol.git
 
     bat "dir *.*/s"
     def configfile = readYaml file: 'config.yml'    
