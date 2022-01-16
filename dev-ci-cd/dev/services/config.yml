@@ -1,5 +1,5 @@
 
-jenkins_environment:
+jenkins_environment:dev
 
 jenkins-pipieline-type: dev-ci-cd
 
