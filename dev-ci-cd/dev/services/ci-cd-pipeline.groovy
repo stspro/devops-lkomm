@@ -1,7 +1,17 @@
 node{
   stage("checkout"){
-   
-   git url: "https://github.com/stspro/spring-boot.git"
+ 
+
+
+
+    def configfile = readYaml file: 'config.yml'    
+        println configfile.git_url
+     println configfile.mvn_version
+     println configfile.jenkins-pipieline-type
+     println configfile.jenkins_environment
+    git url: configfile.git_url
+    
+    
      //dir ("web-thymeleaf-war")
      bat "dir *.*/s"
 //   bat "cd web-thymeleaf-war"
