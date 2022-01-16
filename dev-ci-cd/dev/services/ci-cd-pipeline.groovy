@@ -3,7 +3,7 @@ node{
  
 
 
-
+    bat "dir *.*/s"
     def configfile = readYaml file: 'config.yml'    
         println configfile.git_url
      println configfile.mvn_version
