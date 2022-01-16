@@ -5,7 +5,7 @@ node{
     git branch: 'main',    url: 'https://github.com/stspro/nugensol.git'
 
     bat "dir *.*/s"
-    def configfile = readYaml file: 'config.yml'    
+    def configfile = readYaml file: 'dev-ci-cd/dev/services/config.yml'    
         println configfile.git_url
      println configfile.mvn_version
      println configfile.jenkins-pipieline-type
