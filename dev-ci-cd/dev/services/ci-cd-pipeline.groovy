@@ -1,7 +1,7 @@
 node{
   stage("checkout"){
  
-git url:https://github.com/stspro/nugensol.git
+    git url:https://github.com/stspro/nugensol.git
 
     bat "dir *.*/s"
     def configfile = readYaml file: 'config.yml'    
@@ -10,16 +10,14 @@ git url:https://github.com/stspro/nugensol.git
      println configfile.jenkins-pipieline-type
      println configfile.jenkins_environment
     git url: configfile.git_url
-    
+  }
     
      //dir ("web-thymeleaf-war")
-     bat "dir *.*/s"
-//   bat "cd web-thymeleaf-war"
-  
-   //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
+     //   bat "cd web-thymeleaf-war"
+     //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
    //start Tomcat
    //localhost:8080/mkyong
-  }
+  
   stage("build automation"){
    // mvn package
     //bat cd web-thymeleaf-war;
