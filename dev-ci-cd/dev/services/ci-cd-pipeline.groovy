@@ -9,7 +9,6 @@ node{
     println configfile
         println configfile.git_url
      println configfile.mvn_version
-     println configfile.jenkins-pipieline-type
      println configfile.jenkins_environment
     git url: configfile.git_url
   }
