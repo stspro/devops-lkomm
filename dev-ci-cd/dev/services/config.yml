@@ -1,10 +1,4 @@
 
-jenkins_environment:dev
-mvn_version: 3.3
-
-git_url: https://github.com/stspro/spring-boot.git
-
-
-
-
-
+jenkins_environment: dev
+mvn_version: "3.3"
+git_url: "https://github.com/stspro/spring-boot.git"
