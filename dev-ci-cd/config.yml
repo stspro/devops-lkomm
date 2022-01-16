@@ -1,0 +1,6 @@
+
+jenkins_environment:
+
+jenkins-pipieline-type: dev-ci-cd
+
+
