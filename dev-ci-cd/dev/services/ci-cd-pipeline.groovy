@@ -12,26 +12,17 @@ node{
      println configfile.jenkins_environment
     git url: configfile.git_url
   }
-    
-     //dir ("web-thymeleaf-war")
-     //   bat "cd web-thymeleaf-war"
-     //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
-   //start Tomcat
-   //localhost:8080/mkyong
   
   stage("build automation"){
-   // mvn package
-    //bat cd web-thymeleaf-war;
     dir ("web-thymeleaf-war"){
-    bat "mvn package"
+     bat "mvn package"
      bat "dir *.*/s"
     }
   }
   
   stage("unit testing"){
      dir ("web-thymeleaf-war"){
-    bat "mvn test"
- 
+      bat "mvn test" 
     }
   }
   
