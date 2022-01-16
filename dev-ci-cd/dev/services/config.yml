@@ -3,4 +3,9 @@ jenkins_environment:
 
 jenkins-pipieline-type: dev-ci-cd
 
+mvn_version: 3.3
+
+
+
+
 
