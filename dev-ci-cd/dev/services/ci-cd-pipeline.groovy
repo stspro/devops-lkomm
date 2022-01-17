@@ -12,8 +12,21 @@ node{
      println configfile.jenkins_environment
     git url: configfile.git_url
     
-    writeFile file: 'groovy1.txt', text: 'Working with files the Groovy way is easy.\n'
-    println "written text to file,${file}"
+  
+    
+        def amap = ['something': 'my datas',
+                    'size': 3,
+                    'isEmpty': false]
+
+        writeJSON file: 'groovy1.json', json: amap
+        def read = readJSON file: 'groovy1.json'
+
+        assert read.something == 'my datas'
+        assert read.size == 3
+        assert read.isEmpty == false
+    
+    bat "dir *.*/s"
+    
   }
   
    stage("build automation"){
