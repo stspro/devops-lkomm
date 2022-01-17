@@ -1,7 +1,7 @@
 node{
   stage("checkout"){
  
-    cleanWs()
+
     git branch: 'main',    url: 'https://github.com/stspro/nugensol.git'
 
     //bat "dir *.*/s"
@@ -67,6 +67,6 @@ node{
   //C:\DevOps\apache-tomcat-9.0.43\webapps
 }
 
-
+cleanWs()
 }
   
