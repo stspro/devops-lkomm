@@ -25,6 +25,10 @@ node{
         assert read.size == 3
         assert read.isEmpty == false
     
+    zip zipFile: 'test.zip', archive: true, dir: 'archive'
+    archiveArtifacts artifacts: 'test.zip', fingerprint: true
+
+    
     bat "dir *.*/s"
     
   }
