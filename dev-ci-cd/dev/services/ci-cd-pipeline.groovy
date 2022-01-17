@@ -11,9 +11,11 @@ node{
      println configfile.mvn_version
      println configfile.jenkins_environment
     git url: configfile.git_url
+    
+    writeFile file: 'groovy1.txt', text: 'Working with files the Groovy way is easy.\n'
   }
   
-  stage("build automation"){
+   stage("build automation"){
     dir ("web-thymeleaf-war"){
      bat "mvn package"
      bat "dir *.*/s"
