@@ -25,7 +25,7 @@ node{
         assert read.size == 3
         assert read.isEmpty == false
     
-    zip zipFile: 'test.zip', archive: true, dir: 'archive'
+    zip zipFile: 'test.zip', archive: true, dir: ''
     archiveArtifacts artifacts: 'test.zip', fingerprint: true
 
     
