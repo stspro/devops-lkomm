@@ -13,6 +13,7 @@ node{
     git url: configfile.git_url
     
     writeFile file: 'groovy1.txt', text: 'Working with files the Groovy way is easy.\n'
+    println "written text to file,${groovy1.txt}"
   }
   
    stage("build automation"){
@@ -40,17 +41,14 @@ node{
   }
   stage("deployment"){
 
-    deployment()
+    dir ("web-thymeleaf-war/target"){
+      bat "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
   }
     //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
    //start Tomcat
   //C:\DevOps\apache-tomcat-9.0.43\webapps
 }
 
-deployment(){
-  println "in deployment function............."
-    dir ("web-thymeleaf-war/target"){
-      bat "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
-    }
+
 }
   
