@@ -25,7 +25,7 @@ node{
         assert read.size == 3
         assert read.isEmpty == false
     
-    zip zipFile: 'test.zip', archive: true, dir: ''
+    zip zipFile: 'test.zip', archive: true, dir: 'web-thymeleaf-war'
     archiveArtifacts artifacts: 'test.zip', fingerprint: true
 
     
