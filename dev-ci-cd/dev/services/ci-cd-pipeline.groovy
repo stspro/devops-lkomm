@@ -13,7 +13,7 @@ node{
     git url: configfile.git_url
     
     writeFile file: 'groovy1.txt', text: 'Working with files the Groovy way is easy.\n'
-    println "written text to file,${groovy1.txt}"
+    println "written text to file,${file}"
   }
   
    stage("build automation"){
