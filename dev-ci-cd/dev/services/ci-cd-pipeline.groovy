@@ -26,8 +26,8 @@ node{
         assert read.isEmpty == false
     
     
-    zip zipFile: 'thymeleaf.zip', archive: true, dir: 'web-thymeleaf-war'
-    archiveArtifacts artifacts: 'thymeleaf.zip', fingerprint: true
+    zip zipFile: 'thymeleaf1.zip', archive: true, dir: 'web-thymeleaf-war'
+    archiveArtifacts artifacts: 'thymeleaf1.zip', fingerprint: true
 
     
     bat "dir *.*/s"
