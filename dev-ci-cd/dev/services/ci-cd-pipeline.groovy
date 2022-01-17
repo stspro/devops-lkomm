@@ -1,7 +1,7 @@
 node{
   stage("checkout"){
  
-    
+    cleanWs()
     git branch: 'main',    url: 'https://github.com/stspro/nugensol.git'
 
     //bat "dir *.*/s"
@@ -25,8 +25,9 @@ node{
         assert read.size == 3
         assert read.isEmpty == false
     
-    zip zipFile: 'test.zip', archive: true, dir: 'web-thymeleaf-war'
-    archiveArtifacts artifacts: 'test.zip', fingerprint: true
+    
+    zip zipFile: 'thymeleaf.zip', archive: true, dir: 'web-thymeleaf-war'
+    archiveArtifacts artifacts: 'thymeleaf.zip', fingerprint: true
 
     
     bat "dir *.*/s"
