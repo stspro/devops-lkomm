@@ -16,7 +16,7 @@ node{
    stage("build automation"){
     sh "ls -ltr"
      
-     sh "mvn package"
+     sh "mvn mvn_package_name"
   }
   
   stage("unit testing"){
