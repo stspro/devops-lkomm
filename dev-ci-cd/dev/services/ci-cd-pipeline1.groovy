@@ -16,7 +16,7 @@ node{
   
    stage("build automation"){
     sh "ls -ltr"
-     sh "sudo apt install maven"
+     
      sh "mvn package"
   }
   
