@@ -16,7 +16,7 @@ node{
    stage("build automation"){
     sh "ls -ltr"
      
-     sh "mvn -f web_thymeleaf/pom.xml"
+     sh "mvn -f web_thymeleaf"
   }
   
   stage("unit testing"){
