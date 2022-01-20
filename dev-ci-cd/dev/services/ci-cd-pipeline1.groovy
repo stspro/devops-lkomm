@@ -15,8 +15,9 @@ node{
   
    stage("build automation"){
     sh "ls -ltr"
-     
-     sh "mvn -f web_thymeleaf"
+     dir ("web-thymeleaf-war"){
+     sh "mvn package "
+      }
   }
   
   stage("unit testing"){
