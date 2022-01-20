@@ -1,8 +1,7 @@
 node{
-  stage("checkout"){
- 
   
-
+  cleanWs()
+  stage("checkout"){
     
      sh "mkdir docker-springboot"
      sh "cd docker-springboot"
