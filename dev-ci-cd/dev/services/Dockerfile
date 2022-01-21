@@ -1,6 +1,5 @@
 FROM tomcat:9.0
 
-USER tomcat
 
 COPY mkyong.war /usr/local/tomcat/webapps/
 
