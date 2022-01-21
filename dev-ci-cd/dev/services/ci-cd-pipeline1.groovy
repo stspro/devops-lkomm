@@ -10,7 +10,7 @@ node{
      def application_git_url =  configfile.git_url
      def mvn_version = configfile.mvn_version
     def package_name = "mkyong.war"
-    println $pipelines_env
+    println pipelines_env
     println "this is env: ${pipelines_env}"
      println configfile.jenkins_environment
   }
