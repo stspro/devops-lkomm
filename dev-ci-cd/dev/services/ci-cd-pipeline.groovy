@@ -57,16 +57,30 @@ node{
     }
     
   }
-  stage("deployment"){
-
-    dir ("web-thymeleaf-war/target"){
-      bat "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
+   stage("build image"){
+    
+     dir ("web-thymeleaf-war/target"){
+     bat "sudo docker build -t spring-boot:1.0 ."
+     bat "docker scan"
   }
+   }
+  stage("upload image to ecr"){
+      }
+  
+  stage("deployment"){
+    bat "docker ps"
+    bat "docker run -d -p 8080:8080 spring-boot:1.0"
+    bat "docker stop spring-boot:1.0"
+  //stage("deployment"){
+
+    //dir ("web-thymeleaf-war/target"){
+     // bat "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
+  //}
     //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
    //start Tomcat
   //C:\DevOps\apache-tomcat-9.0.43\webapps
 }
 
-cleanWs()
+
 }
   
