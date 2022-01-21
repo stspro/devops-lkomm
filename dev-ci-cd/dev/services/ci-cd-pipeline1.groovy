@@ -62,7 +62,7 @@ node{
   stage("deployment"){
     dir ("dockerimage"){
       sh "docker ps"
-      sh "docker run -d -p 8081:8081 simple-tomcat:1.0"
+      sh "docker run -d -p 8080:8081 simple-tomcat:1.0"
             sh "docker ps"
    //   sh  "docker stop spring-boot:1.0"
    }
