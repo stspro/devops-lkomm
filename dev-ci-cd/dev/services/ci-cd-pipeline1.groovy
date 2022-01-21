@@ -46,8 +46,8 @@ node{
   stage("build image"){
     sh "ls -ltr"
     sh "mkdir -p dockerimage"
-    sh "cp dev-ci-cd/dev/services/Dockerfile dockerimage/."
-    sh "cp web-thymeleaf-war/target/mkyong.war dockerimage/."
+    sh "cp dev-ci-cd/dev/services/Dockerfile dockerimage"
+    sh "cp web-thymeleaf-war/target/mkyong.war dockerimage"
     dir ("dockerimage"){
      sh "sudo docker build -t spring-boot:1.0 ."
      sh "docker scan"
