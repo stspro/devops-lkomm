@@ -1,26 +1,21 @@
-
-# For Java 8, try this
-# FROM openjdk:8-jdk-alpine
-
-
-# For Java 11, try this
-FROM adoptopenjdk/openjdk11:alpine-jre
-
-# Refer to Maven build -> finalName
-ARG JAR_FILE=target/spring-boot-web.jar
+FROM tomcat:8.0-alpine
 
 # cd /opt/app
 WORKDIR /opt/app
 
-# cp target/spring-boot-web.jar /opt/app/app.jar
-COPY ${JAR_FILE} app.jar
+RUN curl -O https://downloads.apache.org/tomcat/tomcat-8/v8.5.73/bin/apache-tomcat-8.5.73-deployer.tar.gz
+RUN tar xvfz apache*.tar.gz
+RUN mv apache-tomcat-8.5.40/* /opt/tomcat/.
+RUN yum -y install java
+RUN java -version
 
-# java -jar /opt/app/app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
 
-## sudo docker run -p 8080:8080 -t docker-spring-boot:1.0
-## sudo docker run -p 80:8080 -t docker-spring-boot:1.0
-## sudo docker run -p 443:8443 -t docker-spring-boot:1.0
+EXPOSE 8080
+
+CMD [“catalina.sh”, “run”]
+
+
+
 
 
 
