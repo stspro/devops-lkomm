@@ -1,5 +1,7 @@
 node{
-  
+  def application_git_url =''
+   def mvn_version = ''
+   def package_name =''
   cleanWs()
   stage("Read Configuration"){    
      sh "ls -ltr"
@@ -7,9 +9,9 @@ node{
      sh "ls -ltr"
      def configfile = readYaml file: 'dev-ci-cd/dev/services/config.yml'
      println configfile
-     def application_git_url =  configfile.git_url
-     def mvn_version = configfile.mvn_version
-    def package_name = "mkyong.war"
+     application_git_url =  configfile.git_url
+     mvn_version = configfile.mvn_version
+    package_name = "mkyong.war"
     println pipelines_env
     println "this is env: ${pipelines_env}"
      println configfile.jenkins_environment
