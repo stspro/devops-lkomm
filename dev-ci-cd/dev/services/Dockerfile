@@ -2,7 +2,7 @@ FROM tomcat:8.0-alpine
 
 
 
-EXPOSE 8080
+EXPOSE 8081
 
 CMD [“catalina.sh”, “run”]
 
