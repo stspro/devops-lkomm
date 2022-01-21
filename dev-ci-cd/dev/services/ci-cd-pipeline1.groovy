@@ -50,7 +50,7 @@ node{
 
     sh "cp web-thymeleaf-war/target/mkyong.war dockerimage"
     dir ("dockerimage"){
-     sh "sudo docker build -t spring-boot:1.0 ."
+     sh "sudo docker build -t simple-tomcat:1.0 ."
      sh "docker scan"
     }
   }
