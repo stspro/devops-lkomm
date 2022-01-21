@@ -7,6 +7,8 @@ node{
      sh "ls -ltr"
      git branch: 'main',    url: 'https://github.com/stspro/nugensol.git'
      sh "ls -ltr"
+     sh "mkdir -p dockerimage"
+    sh "cp dev-ci-cd/dev/services/Dockerfile dockerimage"
      def configfile = readYaml file: 'dev-ci-cd/dev/services/config.yml'
      println configfile
      application_git_url =  configfile.git_url
@@ -45,8 +47,7 @@ node{
   }
   stage("build image"){
     sh "ls -ltr"
-    sh "mkdir -p dockerimage"
-    sh "cp dev-ci-cd/dev/services/Dockerfile dockerimage"
+
     sh "cp web-thymeleaf-war/target/mkyong.war dockerimage"
     dir ("dockerimage"){
      sh "sudo docker build -t spring-boot:1.0 ."
