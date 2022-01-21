@@ -1,33 +1,35 @@
 node{
   
   cleanWs()
-  stage("checkout"){
-    
+  stage("Read Configuration"){    
      sh "ls -ltr"
      git branch: 'main',    url: 'https://github.com/stspro/nugensol.git'
-     git branch: 'master',    url: 'https://github.com/stspro/spring-boot.git'
      sh "ls -ltr"
      def configfile = readYaml file: 'dev-ci-cd/dev/services/config.yml'
      println configfile
-     println configfile.git_url
-     println configfile.mvn_version
+     def application_git_url =  configfile.git_url
+     def mvn_version = configfile.mvn_version
+    def package_name = "mkyong.war"
+    println $pipelines_env
+    println "this is env: ${pipelines_env}"
      println configfile.jenkins_environment
-    
-     git url: configfile.git_url  
-     sh "java --version"
-        
   }
-  
-   stage("build automation"){
+  stage("checkout Application"){
+     git url: application_git_url  
+     sh "ls -ltr"
+     sh "java --version"        
+  }  
+ stage("build automation"){
    sh "ls -ltr"
    dir ("web-thymeleaf-war"){
-   sh "mvn package "
-      }
-  }
-  
-  stage("unit testing"){
-     
-  }
+      sh "mvn package "
+   }
+ }  
+ stage("unit testing"){
+   dir ("web-thymeleaf-war"){
+      sh "mvn test "
+   }
+ }
   
   stage("code analysis"){
   }
@@ -36,12 +38,15 @@ node{
   //artifactory upload
   dir ("web-thymeleaf-war/target"){
    archiveArtifacts "mkyong.war"
-    }
+  }
     
   }
   stage("build image"){
     sh "ls -ltr"
-     dir ("web-thymeleaf-war/target")
+    sh "mkdir -p dockerimage"
+    sh "cp dev-ci-cd/dev/services/Dockerfile dockerimage/."
+    sh "cp web-thymeleaf-war/target/mkyong.war dockerimage/."
+    dir ("dockerimage")
      sh "sudo docker build -t spring-boot:1.0 ."
      sh "docker scan"
   }
