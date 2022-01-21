@@ -46,9 +46,10 @@ node{
     sh "mkdir -p dockerimage"
     sh "cp dev-ci-cd/dev/services/Dockerfile dockerimage/."
     sh "cp web-thymeleaf-war/target/mkyong.war dockerimage/."
-    dir ("dockerimage")
+    dir ("dockerimage"){
      sh "sudo docker build -t spring-boot:1.0 ."
      sh "docker scan"
+    }
   }
   stage("upload image to ecr"){
     sh "ls -ltr"
@@ -56,10 +57,11 @@ node{
   }
   
   stage("deployment"){
-    sh "docker ps"
-    sh "docker run -d -p 8080:8080 spring-boot:1.0"
-    sh  "docker stop spring-boot:1.0"
-
+    dir ("dockerimage"){
+      sh "docker ps"
+      sh "docker run -d -p 8080:8080 spring-boot:1.0"
+      sh  "docker stop spring-boot:1.0"
+   }
 
    // dir ("web-thymeleaf-war/target"){
       //bat "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
@@ -72,28 +74,3 @@ node{
 
 }
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
