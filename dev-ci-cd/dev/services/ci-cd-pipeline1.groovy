@@ -3,31 +3,18 @@ node{
   cleanWs()
   stage("checkout"){
     
-     sh "mkdir docker-springboot"
-     sh "cd docker-springboot"
      sh "ls -ltr"
-    //git branch: 'main',    url: 'https://github.com/stspro/nugensol.git'
+     git branch: 'main',    url: 'https://github.com/stspro/nugensol.git'
      git branch: 'master',    url: 'https://github.com/stspro/spring-boot.git'
-    
+     sh "ls -ltr"
      def configfile = readYaml file: 'dev-ci-cd/dev/services/config.yml'
      println configfile
      println configfile.git_url
      println configfile.mvn_version
      println configfile.jenkins_environment
-     git url: configfile.git_url
     
-     def amap = ['something': 'my datas',
-                    'size': 3,
-                    'isEmpty': false]
-
-      writeJSON file: 'groovy1.json', json: amap
-      def read = readJSON file: 'groovy1.json'
-
-      assert read.something == 'my datas'
-      assert read.size == 3
-      assert read.isEmpty == false
-  
-      sh "java --version"
+     git url: configfile.git_url  
+     sh "java --version"
         
   }
   
