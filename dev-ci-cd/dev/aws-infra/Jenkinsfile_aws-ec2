@@ -21,12 +21,10 @@ node{
    
   stage("Create AWS EC2 Instance"){
     dir ("dockerimage"){
-      sh "docker ps"
-      sh "docker run -d -p 8081:8080 simple-tomcat:1.0"
-            sh "docker ps"
-   //   sh  "docker stop spring-boot:1.0"
-   }
-
+     sh "terraform init"
+     sh "terraform plan"
+     sh "terraform apply -approve"
+     
 }
  stage("Notification"){
 
