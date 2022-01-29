@@ -1,7 +1,36 @@
-node(){
-stage
-
-
-
+node{
+  def application_git_url =''
+   def mvn_version = ''
+   def package_name =''
+  cleanWs()
+  stage("Read Infrastructure Configuration"){    
+     sh "ls -ltr"
+     git branch: 'main',    url: 'https://github.com/stspro/nugensol.git'
+     sh "ls -ltr"
+     sh "mkdir -p dockerimage"
+    sh "cp dev-ci-cd/dev/services/Dockerfile dockerimage"
+     def configfile = readYaml file: 'dev-ci-cd/dev/services/config.yml'
+     println configfile
+     application_git_url =  configfile.git_url
+     mvn_version = configfile.mvn_version
+    package_name = "mkyong.war"
+    println pipelines_env
+    println "this is env: ${pipelines_env}"
+     println configfile.jenkins_environment
+  }
+   
+  stage("Create AWS EC2 Instance"){
+    dir ("dockerimage"){
+      sh "docker ps"
+      sh "docker run -d -p 8081:8080 simple-tomcat:1.0"
+            sh "docker ps"
+   //   sh  "docker stop spring-boot:1.0"
+   }
 
 }
+ stage("Notification"){
+
+ }
+
+}
+  
