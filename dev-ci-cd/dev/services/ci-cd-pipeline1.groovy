@@ -67,9 +67,12 @@ node{
    //   sh  "docker stop spring-boot:1.0"
    }
 
-   // dir ("web-thymeleaf-war/target"){
-      //bat "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
-    // }
+   dir ("web-thymeleaf-war/target"){
+      sh "C:\DevOps\apache-tomcat-9.0.43\bin\catalina.sh shutdown"
+      sh "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
+     sh "C:\DevOps\apache-tomcat-9.0.43\bin\catalina.sh start"
+     
+     }
     //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
    //start Tomcat
   //C:\DevOps\apache-tomcat-9.0.43\webapps
