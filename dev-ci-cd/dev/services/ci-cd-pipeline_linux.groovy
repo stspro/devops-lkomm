@@ -68,14 +68,14 @@ node{
    }
 
    dir ("web-thymeleaf-war/target"){
-      sh "C:\DevOps\apache-tomcat-9.0.43\bin\catalina.sh shutdown"
+      sh "C:\DevOps\apache-tomcat-9.0.43\bin\catalina.sh shutdown"     
       sh "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
-     sh "C:\DevOps\apache-tomcat-9.0.43\bin\catalina.sh start"
+      sh "C:\DevOps\apache-tomcat-9.0.43\bin\catalina.sh start"
      
+      sh "ssh -i ~/.ssh/idprivatekey ec2-user@ec2-44-201-116-194.compute-1.amazonaws.com 'ls -ltr'"
+      sh "scp -i ~/.ssh/idprivatekey test2 ec2-user@ec2-44-201-116-194.compute-1.amazonaws.com:/home/ec2-user/ "
+      sh "ssh -i ~/.ssh/idprivatekey ec2-user@ec2-44-201-116-194.compute-1.amazonaws.com 'ls -ltr'"
      }
-    //copy web-thymeleaf-war/target/mkyong.war $TOMCAT/webapps/
-   //start Tomcat
-  //C:\DevOps\apache-tomcat-9.0.43\webapps
 }
 
 
