@@ -7,7 +7,7 @@ variable "function_name" {
 }
 
 variable "handler" {
-  default = "python-service.handler"
+  default = "python-service.lambda_handler"
 }
 
 variable "runtime" {
