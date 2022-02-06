@@ -27,6 +27,7 @@ node{
    sh "ls -ltr"
    dir ("lambda-services/python"){
       zip lambda-services lambda.py
+      sh "cp lambda-services.zip dev-ci-cd/dev/lambda-services/terraform"
    }
  }  
  stage("unit testing"){
@@ -43,15 +44,10 @@ node{
     }    
   }
 
-
-   dir ("web-thymeleaf-war/target"){
-      sh "C:\DevOps\apache-tomcat-9.0.43\bin\catalina.sh shutdown"     
-      sh "copy mkyong.war C:\\DevOps\\apache-tomcat-9.0.43\\webapps"
-      sh "C:\DevOps\apache-tomcat-9.0.43\bin\catalina.sh start"
-     
-      sh "ssh -i ~/.ssh/idprivatekey ec2-user@ec2-44-201-116-194.compute-1.amazonaws.com 'ls -ltr'"
-      sh "scp -i ~/.ssh/idprivatekey test2 ec2-user@ec2-44-201-116-194.compute-1.amazonaws.com:/home/ec2-user/ "
-      sh "ssh -i ~/.ssh/idprivatekey ec2-user@ec2-44-201-116-194.compute-1.amazonaws.com 'ls -ltr'"
+stage("Lambda Deployment"){
+   dir ("dev-ci-cd/dev/lambda-services/terraform"){     
+      sh "terraform init"
+      sh "terraform apply -auto-approve"
      }
 }
 
