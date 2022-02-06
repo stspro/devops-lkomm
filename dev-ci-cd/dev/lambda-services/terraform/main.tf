@@ -7,7 +7,7 @@ variable "function_name" {
 }
 
 variable "handler" {
-  default = "lambda.handler"
+  default = "python-service.handler"
 }
 
 variable "runtime" {
@@ -25,7 +25,7 @@ resource "aws_lambda_function" "lambda_function" {
 
 resource "aws_iam_role" "lambda_exec_role" {
   name        = "lambda_exec"
-  path        = "/"
+  path        = "../python"
   description = "Allows Lambda Function to call AWS services on your behalf."
 
   assume_role_policy = <<EOF
