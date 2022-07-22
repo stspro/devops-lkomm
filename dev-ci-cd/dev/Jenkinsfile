@@ -1,26 +1,22 @@
 stages {
-  stage('Build') {
+  /*stage('Build') {
     steps {
       sh 'echo "This is my first step"'
     }
   }
-  stage(“reading properties from properties file”) {
-    steps {
-        // Use a script block to do custom scripting
-        script {
-            def props = readProperties file: 'MyPropertiesConfig.properties' 
-            env.Username = props.User
-        }
-        echo "The username  is $User"
-    }
-}
+    }*/
+
+  stage('Build') {
+       withEnv(["DISABLE_AUTH=true"]) {
+         echo env.DISABLE_AUTH   }
+   }
   stage('Test') {
     steps
-      sh 'echo "This is my Test step"'
+      bat 'echo "This is my Test step"'
     }
   }
   stage('Deploy') {
     steps {
-      sh 'echo "This is my Deploy step"'
+      bat 'echo "This is my Deploy step"'
     }
   }
