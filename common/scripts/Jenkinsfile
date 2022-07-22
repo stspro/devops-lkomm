@@ -1,1 +1,23 @@
 
+stages {
+  /*stage('Build') {
+    steps {
+      sh 'echo "This is my first step"'
+    }
+  }
+    }*/
+
+  stage('Build') {
+       withEnv(["DISABLE_AUTH=true"]) {
+         echo env.DISABLE_AUTH   }
+   }
+  stage('Test') {
+    steps
+      bat 'echo "This is my Test step"'
+    }
+  }
+  stage('Deploy') {
+    steps {
+      bat 'echo "This is my Deploy step"'
+    }
+  }
