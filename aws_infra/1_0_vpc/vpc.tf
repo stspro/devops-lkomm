@@ -81,7 +81,7 @@ resource "aws_route_table_association" "public" {
 }
 
 # create elastic IP (EIP) to assign it the NAT Gateway 
-resource "aws_eip" "demo_eip" {
+resource "aws_eip" "nugen_eip" {
   count    = "${length(var.azs)}"
   vpc      = true
   depends_on = ["aws_internet_gateway.nugen_gw"]
@@ -89,9 +89,9 @@ resource "aws_eip" "demo_eip" {
 
 # create NAT Gateways
 # make sure to create the nat in a internet-facing subnet (public subnet)
-resource "aws_nat_gateway" "demo" {
+resource "aws_nat_gateway" "nugen_nat_gw" {
     count    = "${length(var.azs)}"
-    allocation_id = "${element(aws_eip.demo_eip.*.id, count.index)}"
+    allocation_id = "${element(aws_eip.nugen_eip.*.id, count.index)}"
     subnet_id = "${element(aws_subnet.nugen_public_subnet.*.id, count.index)}"
     depends_on = ["aws_internet_gateway.nugen_gw"]
 }
@@ -111,5 +111,5 @@ resource "aws_route" "private_nat_gateway_route" {
   route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
   destination_cidr_block = "0.0.0.0/0"
   depends_on = ["aws_route_table.private"]
-  nat_gateway_id = "${element(aws_nat_gateway.demo.*.id, count.index)}"
+  nat_gateway_id = "${element(aws_nat_gateway.nugen_nat_gw.*.id, count.index)}"
 }
