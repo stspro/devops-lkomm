@@ -1,5 +1,9 @@
-
 jenkins_environment: dev
 mvn_version: "3.3"
 mvn_package_name: "web-thymeleaf"
+project_name: "web-thymeleaf-war"
 git_url: "https://github.com/stspro/spring-boot.git"
+package_name: "mkyong.war"
+projectKey: "devops_quality" 
+sonarUrl: "http://127.0.0.1:9000" 
+sonarLogin: "sqp_75a21cf58431cf161c6c689ca8289fc6a47947e9"
