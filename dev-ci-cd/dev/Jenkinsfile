@@ -1,0 +1,117 @@
+node{
+	def ci_groovy;
+	def cd_groovy;
+	def build_version
+	def build_version					= env.BUILD_VERSION
+	def pipelines_env 					= env.ENVIRONMENT ?: 'dev'
+	def config_repo 					= env.CONFIG_REPO ?: 'https://github.com/stspro/nugensol.git'
+	def config_repo_branch 				= env.CONFIG_REPO_BRANCH ?: 'main'
+	def config_yaml_location			= env.CONFIG_YAML_LOC ?: 'dev-ci-cd/dev/services/config.yml'
+	
+	def application_git_url 			= ''
+	def mvn_version 					= ''
+	def package_name 					= ''
+	def project_name 					= ''
+	
+	def projectKey          			= ''
+	def sonarUrl		    			= '' 
+	def sonarLogin						= ''
+	def docker_file_loc 				= ''
+	def container_name					= ''
+	def docker_image					= ''
+	def ingress_port					= ''
+	def egress_port						= ''
+	def email_body						= ''
+	def email_subject					= ''
+	def email_to						= ''
+	
+	//Clean Workspace		
+	cleanWs()
+	
+stage("Read Configuration"){    
+	
+	git branch: config_repo_branch,    url: config_repo
+
+	ci_groovy							= load "common/groovy_scripts/ci.groovy"
+	cd_groovy							= load "common/groovy_scripts/cd.groovy"
+	
+	def configfileObj 					= readConfigYaml(yaml_file_location)
+	
+	application_git_url 				= configfileObj.git_url
+	mvn_version 						= configfileObj.mvn_version
+    package_name 						= configfileObj.package_name
+	project_name 						= configfileObj.project_name
+	projectKey	          				= configfileObj.projectKey
+	sonarUrl		    				= configfileObj.sonarUrl 
+	sonarLogin							= configfileObj.sonarLogin	
+	docker_file_loc 					= configfileObj.docker_file_loc
+	container_name						= configfileObj.container_name
+	docker_image						= configfileObj.docker_image
+	ingress_port						= configfileObj.ingress_port
+	egress_port							= configfileObj.egress_port
+	email_body							= configfileObj.email_body
+	email_subject						= configfileObj.email_subject
+	email_to							= configfileObj.email_to
+	
+    println application_git_url
+	println package_name
+	println project_name
+	println projectKey
+	println sonarUrl
+	println docker_file_loc
+	println container_name
+	println docker_image
+	println build_version
+	println email_to
+	println email_subject	
+	
+	sh "mkdir -p dockerimage"
+	sh "cp $docker_file_loc dockerimage"
+
+}
+
+stage("Checkout Application Code"){
+	ci_groovy.checkoutGitRepo(application_git_url, "master")     
+}  
+ 
+stage("Build Automation"){
+	ci_groovy.buildMavenPackage(project_name)
+}  
+
+stage("unit testing"){
+	ci_groovy.runUnitTestsMaven(project_name)
+}
+
+stage("Code Analysis"){
+	ci_groovy.publishUnitTestReportToSonarMaven("testing-junit5-mockito",projectKey,sonarUrl,sonarLogin) 
+}
+
+stage("build management"){
+	ci_groovy.uploadArtifacts("web-thymeleaf-war/target",package_name)    	
+}
+  
+stage("build image"){
+
+    sh "cp $project_name/target/$package_name dockerimage"
+	ci_groovy.buildDockerImage(dockerimage,image_name,build_version)
+}
+
+stage("upload image to ecr"){
+    sh "ls -ltr"
+}
+  
+stage("deployment"){
+	dir ("dockerimage"){
+		
+		cd_groovy.stopAndRemoveDockerContainerInDockerHub(container_name, docker_image,build_version)
+		
+		cd_groovy.removeDockerImageInDockerHub(docker_image,build_version)
+		
+		cd_groovy.startDockerContainerInDockerHub(docker_image,build_version, ingress_port, egress_port)
+		
+	}
+}
+
+stage("Email Notification"){
+	sendEmailNotification(email_body, email_subject, email_to)
+}  
