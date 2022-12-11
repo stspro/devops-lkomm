@@ -36,7 +36,7 @@ publishUnitTestReportToSonarMaven(project_dir,projectKey,sonarUrl,sonarLogin) {
 	}
 }
 
- //artifactory upload
+//artifactory upload
 uploadArtifacts(project_target_dir,package_name){
 
 	println ">>>> Starting uploadArtifacts method >>>>"
@@ -46,6 +46,10 @@ uploadArtifacts(project_target_dir,package_name){
 	}
 }
 
+/**
+*
+*
+*/
 buildDockerImage(docker_build_folder,image_name,build_version){
 
 	println ">>>> Starting buildDockerImage method >>>>"

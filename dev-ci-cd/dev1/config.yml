@@ -1,0 +1,23 @@
+
+jenkins_environment: dev
+mvn_version: "3.3"
+mvn_package_name: "web-thymeleaf"
+git_url: "https://github.com/stspro/spring-boot.git"
+package_name: "mkyong.war"
+project_name: "web-thymeleaf-war"
+projectKey: "devops_quality" 
+sonarUrl: "http://127.0.0.1:9000" 
+sonarLogin: "sqp_75a21cf58431cf161c6c689ca8289fc6a47947e9"
+docker_file_loc : "dev-ci-cd/dev1/Dockerfile"
+container_name : "nugensol-svc"
+docker_image : "nugensol"
+ingress_port : "8081"
+egress_port : "8080"
+email_body : "DevOps Pipeline Build is successfull"
+email_subject : "DevOps Pipeline Build Status"
+email_to : "laxmishrini@hotmail.com"
+
+
+
+
+
