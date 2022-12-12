@@ -114,3 +114,4 @@ stage("deployment"){
 stage("Email Notification"){
 	sendEmailNotification(email_body, email_subject, email_to)
 }  
+}
