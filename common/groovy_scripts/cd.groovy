@@ -1,5 +1,5 @@
 
-stopAndRemoveDockerContainerInDockerHub(container_name, docker_image,build_version){
+def stopAndRemoveDockerContainerInDockerHub(container_name, docker_image,build_version){
 	println ">>>> Starting stopDockerContainerInDockerHub method >>>>"
 	
 	sh "docker container ls"
@@ -14,7 +14,7 @@ stopAndRemoveDockerContainerInDockerHub(container_name, docker_image,build_versi
 	sh "docker ps"
 }
 
-removeDockerImageInDockerHub( docker_image,build_version){
+def removeDockerImageInDockerHub( docker_image,build_version){
 
 	println ">>>> Starting removeDockerImageInDockerHub method >>>>"
 	
@@ -27,7 +27,7 @@ removeDockerImageInDockerHub( docker_image,build_version){
 	
 }
 
-startDockerContainerInDockerHub(docker_image,build_version, ingress_port, egress_port){
+def startDockerContainerInDockerHub(docker_image,build_version, ingress_port, egress_port){
 
 	println ">>>> Starting startDockerContainerInDockerHub method >>>>"
 
