@@ -34,7 +34,7 @@ stage("Read Configuration"){
 	ci_groovy						= load "common/groovy_scripts/ci.groovy"
 	cd_groovy						= load "common/groovy_scripts/cd.groovy"
 	
-	def configfileObj 					= ci_groovy.readConfigYaml(yaml_file_location)
+	def configfileObj 					= ci_groovy.readConfigYaml(config_yaml_location)
 	
 	application_git_url 					= configfileObj.git_url
 	mvn_version 						= configfileObj.mvn_version
