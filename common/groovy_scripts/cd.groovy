@@ -39,3 +39,5 @@ startDockerContainerInDockerHub(docker_image,build_version, ingress_port, egress
 	
 	sh "docker ps"
 }
+
+return this
