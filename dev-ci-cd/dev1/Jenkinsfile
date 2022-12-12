@@ -36,8 +36,8 @@ stage("Read Configuration"){
 	
 	git branch: config_repo_branch,    url: config_repo
 
-	ci_groovy						= load "common/groovy_scripts/ci.groovy"
-	cd_groovy						= load "common/groovy_scripts/cd.groovy"
+	ci_groovy						= load pwd()+ "/common/groovy_scripts/ci.groovy"
+	cd_groovy						= load pwd()+ "common/groovy_scripts/cd.groovy"
 	
 	//def configfileObj 					= ci_groovy.readConfigYaml(config_yaml_location)
 	println ">>>> Starting readConfigYaml method >>>>"
