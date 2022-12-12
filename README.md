@@ -1,6 +1,6 @@
 
 
-#### **nugensol-lkomm**
+#### **devops-lkomm**
 ###### This Repository aims to provide basic Continuous Integration / Continuous Delivery Pipelines for Java Applications .
 CI/CD Tools Integrated:
  * CloudBees Jenkins  : **Jenkins 2.375.1**
