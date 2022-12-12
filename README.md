@@ -19,3 +19,5 @@ Typical usage  :
    * 	CONFIG_YAML_LOC       = 'dev-ci-cd/dev1/config.yml'
   5) Build the pipeline.
   6) Verify the Docker Container deployed on local DockerHub.
+
+![image](https://user-images.githubusercontent.com/42194755/206936960-3570c76f-2b62-4e8c-aa74-6389dd890f74.png)
