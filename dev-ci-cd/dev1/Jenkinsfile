@@ -12,6 +12,12 @@ node{
 	//def config_repo_branch 				= env.CONFIG_REPO_BRANCH ?: 'main'
 	//def config_yaml_location			        = env.CONFIG_YAML_LOC ?: 'dev-ci-cd/dev1/config.yml'
 	
+	println pipelines_env
+	println config_repo
+	println config_repo_branch
+	println config_repo_branch
+	println config_yaml_location
+	
 	def application_git_url 			        = ''
 	def mvn_version 					= ''
 	def package_name 					= ''
