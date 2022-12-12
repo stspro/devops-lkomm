@@ -1,4 +1,4 @@
-checkoutGitRepo(git_url, git_repo_branch){
+def checkoutGitRepo(git_url, git_repo_branch){
 
 	println ">>>> Starting checkoutGitRepo method >>>>"
 	
@@ -7,7 +7,7 @@ checkoutGitRepo(git_url, git_repo_branch){
 	sh "ls -ltr"
 }     
 
-buildMavenPackage(project_name){
+def buildMavenPackage(project_name){
 
 	println ">>>> Starting buildMavenPackage method >>>>"
 	
@@ -17,7 +17,7 @@ buildMavenPackage(project_name){
 	}
 }
 
-runUnitTestsMaven(project_name){
+def runUnitTestsMaven(project_name){
 
 	println ">>>> Starting runUnitTestsMaven method >>>>"
 	
@@ -26,7 +26,7 @@ runUnitTestsMaven(project_name){
 	}
 }
 
-publishUnitTestReportToSonarMaven(project_dir,projectKey,sonarUrl,sonarLogin) {
+def publishUnitTestReportToSonarMaven(project_dir,projectKey,sonarUrl,sonarLogin) {
 
 	println ">>>> Starting publishUnitTestReportToSonarMaven method >>>>"
 	
@@ -37,7 +37,7 @@ publishUnitTestReportToSonarMaven(project_dir,projectKey,sonarUrl,sonarLogin) {
 }
 
 //artifactory upload
-uploadArtifacts(project_target_dir,package_name){
+def uploadArtifacts(project_target_dir,package_name){
 
 	println ">>>> Starting uploadArtifacts method >>>>"
 	 
@@ -50,7 +50,7 @@ uploadArtifacts(project_target_dir,package_name){
 *
 *
 */
-buildDockerImage(docker_build_folder,image_name,build_version){
+def buildDockerImage(docker_build_folder,image_name,build_version){
 
 	println ">>>> Starting buildDockerImage method >>>>"
 	
@@ -60,7 +60,7 @@ buildDockerImage(docker_build_folder,image_name,build_version){
     }
 }
 
-sendEmailNotification(email_body, email_subject, email_to){
+def sendEmailNotification(email_body, email_subject, email_to){
 	println ">>>> Starting sendEmailNotification method >>>>"
 	
 	emailext body: email_body, subject: email_subject, to: email_to
