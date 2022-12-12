@@ -40,7 +40,7 @@ stage("Read Configuration"){
 	
 	git branch: config_repo_branch,    url: config_repo
 
-	def ci_groovy						= load "/common/groovy_scripts/ci.groovy"
+	def ci_groovy						= load "common/groovy_scripts/ci.groovy"
 	
 	println ci_groovy
 	println "loaded ci groovy"
