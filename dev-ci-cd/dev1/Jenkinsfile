@@ -1,7 +1,7 @@
 node{
 	def ci_groovy						= null;
 	def cd_groovy						= null;
-	def build_version					= env.BUILD_VERSION
+	def build_version					= env.BUILD_NUMBER
 	def pipelines_env 					= env.ENVIRONMENT
 	def config_repo 					= env.CONFIG_REPO
 	def config_repo_branch 				        = env.CONFIG_REPO_BRANCH
