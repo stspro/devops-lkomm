@@ -108,7 +108,7 @@ stage("build management"){
 stage("build image"){
 
     sh "cp $project_name/target/$package_name dockerimage"
-	ci_groovy.buildDockerImage(dockerimage,image_name,build_version)
+	ci_groovy.buildDockerImage("dockerimage",image_name,build_version)
 }
 
 stage("upload image to ecr"){
