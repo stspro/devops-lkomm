@@ -39,7 +39,9 @@ node{
 stage("Read Configuration"){    
 	
 	git branch: config_repo_branch,    url: config_repo
-
+	println "git cloned"
+	sh "ls -ltr"
+	
 	def ci_groovy						= load "common/groovy_scripts/ci.groovy"
 	
 	println ci_groovy
