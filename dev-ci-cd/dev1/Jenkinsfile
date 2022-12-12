@@ -2,10 +2,15 @@ node{
 	def ci_groovy;
 	def cd_groovy;
 	def build_version					= env.BUILD_VERSION
-	def pipelines_env 					= env.ENVIRONMENT ?: 'dev1'
-	def config_repo 					= env.CONFIG_REPO ?: 'https://github.com/stspro/nugensol.git'
-	def config_repo_branch 				        = env.CONFIG_REPO_BRANCH ?: 'main'
-	def config_yaml_location			        = env.CONFIG_YAML_LOC ?: 'dev-ci-cd/dev1/config.yml'
+	def pipelines_env 					= env.ENVIRONMENT
+	def config_repo 					= env.CONFIG_REPO
+	def config_repo_branch 				        = env.CONFIG_REPO_BRANCH
+	def config_yaml_location			        = env.CONFIG_YAML_LOC
+	
+	//def pipelines_env 					= env.ENVIRONMENT ?: 'dev1'
+	//def config_repo 					= env.CONFIG_REPO ?: 'https://github.com/stspro/nugensol.git'
+	//def config_repo_branch 				= env.CONFIG_REPO_BRANCH ?: 'main'
+	//def config_yaml_location			        = env.CONFIG_YAML_LOC ?: 'dev-ci-cd/dev1/config.yml'
 	
 	def application_git_url 			        = ''
 	def mvn_version 					= ''
