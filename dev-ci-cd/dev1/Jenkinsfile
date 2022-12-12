@@ -1,6 +1,4 @@
 node{
-	def ci_groovy;
-	def cd_groovy;
 	def build_version					= env.BUILD_VERSION
 	def pipelines_env 					= env.ENVIRONMENT
 	def config_repo 					= env.CONFIG_REPO
@@ -42,8 +40,8 @@ stage("Read Configuration"){
 	
 	git branch: config_repo_branch,    url: config_repo
 
-	ci_groovy						= load pwd()+ "/common/groovy_scripts/ci.groovy"
-	cd_groovy						= load pwd()+ "common/groovy_scripts/cd.groovy"
+	def ci_groovy						= load pwd()+ "/common/groovy_scripts/ci.groovy"
+	def cd_groovy						= load pwd()+ "common/groovy_scripts/cd.groovy"
 	
 	//def configfileObj 					= ci_groovy.readConfigYaml(config_yaml_location)
 	println ">>>> Starting readConfigYaml method >>>>"
