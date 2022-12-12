@@ -4,18 +4,18 @@ node{
 	def build_version					= env.BUILD_VERSION
 	def pipelines_env 					= env.ENVIRONMENT ?: 'dev1'
 	def config_repo 					= env.CONFIG_REPO ?: 'https://github.com/stspro/nugensol.git'
-	def config_repo_branch 				= env.CONFIG_REPO_BRANCH ?: 'main'
-	def config_yaml_location			= env.CONFIG_YAML_LOC ?: 'dev-ci-cd/dev1/config.yml'
+	def config_repo_branch 				        = env.CONFIG_REPO_BRANCH ?: 'main'
+	def config_yaml_location			        = env.CONFIG_YAML_LOC ?: 'dev-ci-cd/dev1/config.yml'
 	
-	def application_git_url 			= ''
+	def application_git_url 			        = ''
 	def mvn_version 					= ''
 	def package_name 					= ''
 	def project_name 					= ''
 	
-	def projectKey          			= ''
-	def sonarUrl		    			= '' 
+	def projectKey          				= ''
+	def sonarUrl		    				= '' 
 	def sonarLogin						= ''
-	def docker_file_loc 				= ''
+	def docker_file_loc 					= ''
 	def container_name					= ''
 	def docker_image					= ''
 	def ingress_port					= ''
@@ -31,26 +31,26 @@ stage("Read Configuration"){
 	
 	git branch: config_repo_branch,    url: config_repo
 
-	ci_groovy							= load "common/groovy_scripts/ci.groovy"
-	cd_groovy							= load "common/groovy_scripts/cd.groovy"
+	ci_groovy						= load "common/groovy_scripts/ci.groovy"
+	cd_groovy						= load "common/groovy_scripts/cd.groovy"
 	
 	def configfileObj 					= ci_groovy.readConfigYaml(yaml_file_location)
 	
-	application_git_url 				= configfileObj.git_url
+	application_git_url 					= configfileObj.git_url
 	mvn_version 						= configfileObj.mvn_version
     package_name 						= configfileObj.package_name
 	project_name 						= configfileObj.project_name
 	projectKey	          				= configfileObj.projectKey
 	sonarUrl		    				= configfileObj.sonarUrl 
-	sonarLogin							= configfileObj.sonarLogin	
+	sonarLogin						= configfileObj.sonarLogin	
 	docker_file_loc 					= configfileObj.docker_file_loc
 	container_name						= configfileObj.container_name
 	docker_image						= configfileObj.docker_image
 	ingress_port						= configfileObj.ingress_port
-	egress_port							= configfileObj.egress_port
-	email_body							= configfileObj.email_body
+	egress_port						= configfileObj.egress_port
+	email_body						= configfileObj.email_body
 	email_subject						= configfileObj.email_subject
-	email_to							= configfileObj.email_to
+	email_to						= configfileObj.email_to
 	
     println application_git_url
 	println package_name
