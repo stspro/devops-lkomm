@@ -60,11 +60,25 @@ node{
   }
   
   stage("deployment"){
-    dir ("dockerimage"){
+    sh "sudo apt install default-jdk"
+    sh "java -version"
+    sh "sudo ssh -i path_to_pem_file server_username@ip_address"
+    sh "sudo wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz"
+    sh "sudo tar xvzf apache-tomcat-8.5.81.tar.gz"
+    sh "sudo scp path_to_war/war_file_name.war server_username@ip_address:~"
+    sh "sudo chmod 555 war_file_name.war"
+    sh "sudo mv war_file_name.war /opt/apache-tomcat-8.5.81/webapps/ROOT.war"
+    sh "cd /opt/apache-tomcat-8.5.81/"
+    sh "sudo sh bin/startup.sh"
+    sh "sudo tail -f logs/catalina.out"
+    sh "sudo sh bin/shutdown.sh"
+
+
+    /*dir ("dockerimage"){
       sh "docker ps"
       sh "docker run -d -p 8081:8080 simple-tomcat:1.0"
             sh "docker ps"
-   //   sh  "docker stop spring-boot:1.0"
+   //   sh  "docker stop spring-boot:1.0"*/
    }
 
    dir ("web-thymeleaf-war/target"){
