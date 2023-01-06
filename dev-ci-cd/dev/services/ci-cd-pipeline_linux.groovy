@@ -60,18 +60,23 @@ node{
   }
   
   stage("deployment"){
+    //infrastructure and software instllation steps
     sh "sudo apt install default-jdk"
     sh "java -version"
     sh "sudo ssh -i path_to_pem_file server_username@ip_address"
     sh "sudo wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz"
     sh "sudo tar xvzf apache-tomcat-8.5.81.tar.gz"
-    sh "sudo scp path_to_war/war_file_name.war server_username@ip_address:~"
-    sh "sudo chmod 555 war_file_name.war"
-    sh "sudo mv war_file_name.war /opt/apache-tomcat-8.5.81/webapps/ROOT.war"
-    sh "cd /opt/apache-tomcat-8.5.81/"
-    sh "sudo sh bin/startup.sh"
-    sh "sudo tail -f logs/catalina.out"
-    sh "sudo sh bin/shutdown.sh"
+    
+    //deploy steps
+    sh "scp path_to_war/war_file_name.war server_username@ip_address:~"
+    sh "ssh -i ~/.ssh/idprivatekey server_username@ip_address 'chmod 555 war_file_name.war'"
+    sh "ssh -i ~/.ssh/idprivatekey server_username@ip_address 'ls -ltr war_file_name.war'"
+    sh "ssh -i ~/.ssh/idprivatekey server_username@ip_address 'sh /opt/apache-tomcat-8.5.81/bin/shutdown.sh'"
+    sh "ssh -i ~/.ssh/idprivatekey server_username@ip_address 'sh rm -Rf /opt/apache-tomcat-8.5.81/webapps/ROOT'"
+    sh "ssh -i ~/.ssh/idprivatekey server_username@ip_address 'mv war_file_name.war /opt/apache-tomcat-8.5.81/webapps/ROOT.war'"
+    sh "ssh -i ~/.ssh/idprivatekey server_username@ip_address 'cd /opt/apache-tomcat-8.5.81/bin && sh startup.sh'"
+    //&& tail -f logs/catalina.out
+    
 
 
     /*dir ("dockerimage"){
