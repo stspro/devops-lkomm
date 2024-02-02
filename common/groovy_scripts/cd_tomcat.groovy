@@ -15,3 +15,4 @@ def deploywebappontomcat(username,ip_address,privatekey,tomcat,app_war){
     sh "ssh -i $privatekey $username@$ip_address 'mv war_file_name.war $tomcat/webapps/ROOT.war'"
     sh "ssh -i $privatekey $username@$ip_address 'cd $tomcat/bin && sh startup.sh'"
 }
+
