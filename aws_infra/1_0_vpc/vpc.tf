@@ -113,3 +113,4 @@ resource "aws_route" "private_nat_gateway_route" {
   depends_on = ["aws_route_table.private"]
   nat_gateway_id = "${element(aws_nat_gateway.nugen_nat_gw.*.id, count.index)}"
 }
+
