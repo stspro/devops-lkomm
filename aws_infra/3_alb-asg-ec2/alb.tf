@@ -132,3 +132,4 @@ resource "aws_autoscaling_attachment" "demo_asg_attachment" {
 output "url" {
   value = "http://${aws_alb.docker_demo_alb.dns_name}/"
 }
+
