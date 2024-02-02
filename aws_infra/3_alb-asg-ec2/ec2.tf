@@ -36,3 +36,4 @@ resource "aws_security_group" "docker_demo_ec2" {
 #    Name = "docker-nginx-demo-instance-${count.index}"
 #  }
 #}
+
