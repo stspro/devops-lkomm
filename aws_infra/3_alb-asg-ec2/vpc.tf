@@ -114,3 +114,4 @@ resource "aws_route" "private_nat_gateway_route" {
   nat_gateway_id = "${element(aws_nat_gateway.demo.*.id, count.index)}"
 }
 
+
