@@ -46,3 +46,4 @@ Note: we can skip the keys args in the command if they are set via shell/env exp
 
 ## URL
 Applying this Terraform configuration returns the load balancer's public URL on the last line of output.  This URL can be used to view the default nginx homepage.
+
