@@ -62,3 +62,4 @@ source_arn = "arn:aws:s3:::${aws_s3_bucket.bucket.id}"
 output "arn" {
 value = "${aws_lambda_function.test_lambda.arn}"
 }
+
